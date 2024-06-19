@@ -7,75 +7,77 @@ public class Producto {
     // informacion basica del producto
     private String nombre;
     private int clave;
-    private int unidadesVendidas;
+    private double unidadesVendidas;
     private String descripcion;
+    private String tipo;
     private double precioNoIva;
     private double precioConIva;
-    private double subTotal;
-    private int inventario;
-    private String tipo;
-    private String medida;
+    private double subTotal; //ventas generales del producto SIN iva
+    private int inventario; 
     
     // constructor
-    public Producto(String nombre, String descripcion, double precioNoIva, int inventario, String tipo, String medida) {
+    public Producto(String nombre, String descripcion, double precioNoIva, double precioConIva, String tipo, int clave, double unidadesVendidas, int inventario,  String medida) {
         setNombre(nombre);
-        this.clave = ++i;
-        this.unidadesVendidas = 0;
         setDescripcion(descripcion);
-        setPrecioNoIva(precioNoIva);
-        setInventario(inventario);
-        this.subTotal = precioNoIva * unidadesVendidas;
+        setPrecio(precioNoIva);
         setTipo(tipo);
-        setMedida(medida);
+        setInventario(inventario);
+        this.clave = incrementaClave(); //esta
+        this.unidadesVendidas = 0;
+        setSubTotal();
     }
     
     // constructor vacio
     public Producto() {
         this.nombre = "sin nombre";
-        this.clave = ++i;
-        this.unidadesVendidas = 0;
         this.descripcion = "Sin descripcion";
         this.precioNoIva = 0.0;
         this.precioConIva = 0.0;
-        this.inventario = 0;
-        this.subTotal = 0.0;
         this.tipo = "sin tipo";
-        this.medida = "picogramos";
+        this.inventario = 0;
+        this.clave = 0;
+        this.unidadesVendidas = 0.0;
+        this.subTotal = 0.0;
     }
     
-    // Metodos setters
-    public void setMedida(String medida) {
-        this.medida = medida;
+    private int incrementaClave() {
+        return ++i;
     }
-    
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+    
     
     public void setSubTotal() {
         this.subTotal = this.precioNoIva * this.unidadesVendidas;
     }
     
     public void setInventario(int inventario) {
-        this.inventario = Math.max(inventario, 0);
-    }
-    
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    
-    public void setUnidadesVendidas(int unidadesVendidas) {
-        if (unidadesVendidas > 0) {
-            this.unidadesVendidas += unidadesVendidas;
-            setSubTotal();
+        if (inventario >= 0 ) {
+           this.inventario = inventario;
+        } else {
+            throw new IllegalArgumentException("Numero no válido, el inventario debe de ser mayor a cero");
         }
     }
     
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setNombre(String nombre) {
+        if (nombre != null ) {
+           this.nombre = nombre;
+        } else {
+            throw new IllegalArgumentException("Cadena vacía no aceptada");
+        }
     }
     
-    public void setPrecioNoIva(double precioNoIva) {
+    
+    public void setDescripcion(String descripcion) {
+        if (descripcion != null ) {
+            this.descripcion = descripcion;
+        } else {
+            throw new IllegalArgumentException("Descripción vacía inválida");
+        }
+    }
+    
+    public void setPrecio(double precioNoIva) {
         if (precioNoIva <= 0) {
             this.precioNoIva = 0;
             this.precioConIva = 0;
@@ -86,9 +88,6 @@ public class Producto {
     }
     
     // Metodos getters
-    public String getMedida() {
-        return medida;
-    }
     
     public String getTipo() {
         return tipo;
@@ -110,7 +109,7 @@ public class Producto {
         return clave;
     }
     
-    public int getUnidadesVendidas() {
+    public double getUnidadesVendidas() {
         return unidadesVendidas;
     }
     
