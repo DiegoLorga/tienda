@@ -13,32 +13,34 @@ public class ServiciosCliente {
     private List<Clientes> listaClientes;
     private Scanner scanner;
 
-
     public ServiciosCliente() {
         this.listaClientes = new ArrayList<>();
         this.scanner = new Scanner(System.in);
     }
 
     // Método para crear un nuevo cliente
-    public void crearCliente() {
+    public void crearCliente(String nombres,String direccion, String cuenta ) {
         System.out.println("\nCreación de nuevo cliente:");
         
         System.out.print("Nombre del cliente: ");
-        String nombre = scanner.nextLine();
+        String nombre = nombres;
 
         System.out.print("Dirección de envío: ");
-        String direccionEnvio = scanner.nextLine();
+        String direccionEnvio = direccion;
 
         System.out.print("Cuenta de pago: ");
-        String cuentaPago = scanner.nextLine();
+        String cuentaPago = cuenta;
 
         System.out.print("Venta del mes: ");
-        double ventaMes = Double.parseDouble(scanner.nextLine());
+        double ventaMes = 0;
 
         Clientes nuevoCliente = new Clientes(nombre, direccionEnvio, cuentaPago, ventaMes);
         listaClientes.add(nuevoCliente);
 
+        //clientesint.actualizarTabla(listaClientes);
+        
         System.out.println("Cliente creado satisfactoriamente.");
+       
     }
 
     // Método para mostrar todos los clientes
@@ -50,10 +52,10 @@ public class ServiciosCliente {
     }
 
     // Método para actualizar los datos de un cliente
-    public void actualizarCliente() {
+    public void actualizarCliente(int num) {
         System.out.println("\nActualización de cliente:");
         System.out.print("Ingrese el número de cliente a actualizar: ");
-        int numCliente = Integer.parseInt(scanner.nextLine());
+        int numCliente = num;
 
         Clientes clienteEncontrado = buscarClientePorNumero(numCliente);
         if (clienteEncontrado == null) {
@@ -104,5 +106,12 @@ public class ServiciosCliente {
         }
         return null;
     }
+    
+    public List<Clientes> getListaClientes() {
+    return this.listaClientes;
+}
+
+ 
+    
 }
 
