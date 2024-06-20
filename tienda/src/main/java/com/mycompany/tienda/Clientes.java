@@ -1,70 +1,27 @@
 package com.mycompany.tienda;
 
+import java.util.ArrayList;
+
 public class Clientes {
     private String nombre;
     private int numCliente;
-    private static int num = 0;
-    private int cuentaPago;
-    private int pedidosPendientes;
-    private int pedidosAtendidos;
     private String direccionEnvio;
-    private int ventaTotalMes;
+    private String cuentaPago;
+    private double ventaMes;
+    private ArrayList<String> pedidosPendientes; // ArrayList de claves de pedidos pendientes
+    private ArrayList<String> pedidosAtendidos; // ArrayList de claves de pedidos atendidos
 
-    // Constructor por defecto
-    public Clientes() {
-        this.nombre = "sin nombre";
-        this.numCliente = incrementaNumCliente();
-        this.pedidosPendientes = 0;
-        this.pedidosAtendidos = 0;
-        this.direccionEnvio = "133#";
-        this.cuentaPago = 0;
-        this.ventaTotalMes = 0;
-        
-    }
-
-    // Constructor con parámetros
-    public Clientes(String nombre, int cuentaPago, int pedidosPendientes, int pedidosAtendidos, String direccionEnvio, int ventaTotalMes ) {
+    public Clientes(String nombre, int numCliente, String direccionEnvio, String cuentaPago, double ventaMes) {
         this.nombre = nombre;
-        this.numCliente = incrementaNumCliente();
-        this.cuentaPago = cuentaPago;
-        this.pedidosPendientes = pedidosPendientes;
-        this.pedidosAtendidos = pedidosAtendidos;
+        this.numCliente = numCliente;
         this.direccionEnvio = direccionEnvio;
-        this.ventaTotalMes = ventaTotalMes;
-    }
-
-    // Método para incrementar y obtener el número de cliente
-    private int incrementaNumCliente() {
-        return ++num;
-    }
-
-    // Métodos setters
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setCuentaPago(int cuentaPago) {
         this.cuentaPago = cuentaPago;
+        this.ventaMes = ventaMes;
+        this.pedidosPendientes = new ArrayList<>();
+        this.pedidosAtendidos = new ArrayList<>();
     }
 
-    public void setPedidosPendientes(int pedidosPendientes) {
-        this.pedidosPendientes = pedidosPendientes;
-    }
-
-    public void setPedidosAtendidos(int pedidosAtendidos) {
-        this.pedidosAtendidos = pedidosAtendidos;
-    }
-    
-    public void setDireccionEnvio(String direccionEnvio) {
-        this.direccionEnvio = direccionEnvio;
-    }
-    
-    public void setVentaTotalMes(int ventaTotalMes) {
-        this.ventaTotalMes = ventaTotalMes;
-    }
-    
-
-    // Métodos getters
+    // Getters
     public String getNombre() {
         return nombre;
     }
@@ -73,23 +30,67 @@ public class Clientes {
         return numCliente;
     }
 
-    public int getCuentaPago() {
-        return cuentaPago;
-    }
-
-    public int getPedidosPendientes() {
-        return pedidosPendientes;
-    }
-
-    public int getPedidosAtendidos() {
-        return pedidosAtendidos;
-    }
-    
     public String getDireccionEnvio() {
         return direccionEnvio;
     }
-    
-    public int getVentaTotalMes() {
-        return ventaTotalMes;
+
+    public String getCuentaPago() {
+        return cuentaPago;
+    }
+
+    public double getVentaMes() {
+        return ventaMes;
+    }
+
+    public ArrayList<String> getPedidosPendientes() {
+        return pedidosPendientes;
+    }
+
+    public ArrayList<String> getPedidosAtendidos() {
+        return pedidosAtendidos;
+    }
+
+    // Setters
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setNumCliente(int numCliente) {
+        this.numCliente = numCliente;
+    }
+
+    public void setDireccionEnvio(String direccionEnvio) {
+        this.direccionEnvio = direccionEnvio;
+    }
+
+    public void setCuentaPago(String cuentaPago) {
+        this.cuentaPago = cuentaPago;
+    }
+
+    public void setVentaMes(double ventaMes) {
+        this.ventaMes = ventaMes;
+    }
+
+    public void setPedidosPendientes(ArrayList<String> pedidosPendientes) {
+        this.pedidosPendientes = pedidosPendientes;
+    }
+
+    public void setPedidosAtendidos(ArrayList<String> pedidosAtendidos) {
+        this.pedidosAtendidos = pedidosAtendidos;
+    }
+
+    // Métodos adicionales
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "nombre='" + nombre + '\'' +
+                ", numCliente=" + numCliente +
+                ", direccionEnvio='" + direccionEnvio + '\'' +
+                ", cuentaPago='" + cuentaPago + '\'' +
+                ", ventaMes=" + ventaMes +
+                ", pedidosPendientes=" + pedidosPendientes +
+                ", pedidosAtendidos=" + pedidosAtendidos +
+                '}';
     }
 }
+
