@@ -40,6 +40,12 @@ public class ServiciosProducto {
 
         System.out.println("Producto y registro de inventario creados satisfactoriamente.");
     }
+    
+       // Método para crear un nuevo producto con su inventario asociado desde la interfaz gráfica
+    public void crearProducto(String nombre, String descripcion, double precioNoIva, String tipo, double stock) {
+        Producto nuevoProducto = new Producto(descripcion, precioNoIva, tipo, nombre, stock);
+        listaProductos.add(nuevoProducto);
+    }
 
     // Método para mostrar todos los productos con sus inventarios
     public void mostrarProductos() {

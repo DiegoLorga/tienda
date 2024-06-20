@@ -23,7 +23,12 @@ public class Producto {
     }
 
     private double calcularPrecioConIva(double precioSinIva) {
-        return precioSinIva * 1.16; // 16% de IVA
+        double precioFormateado = formatearADosDecimales(precioSinIva);
+        return precioFormateado * 1.16; // 16% de IVA
+    }
+
+    private double formatearADosDecimales(double numero) {
+        return Math.round(numero * 100.0) / 100.0; // Redondea a dos decimales
     }
 
     public String getClave() {
@@ -43,7 +48,7 @@ public class Producto {
     }
 
     public void setPrecioNoIva(double precioNoIva) {
-        this.precioNoIva = precioNoIva;
+        this.precioNoIva = formatearADosDecimales(precioNoIva);
         this.precioConIva = calcularPrecioConIva(precioNoIva);
     }
 
