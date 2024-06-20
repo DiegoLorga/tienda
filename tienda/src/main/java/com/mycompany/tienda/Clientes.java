@@ -3,6 +3,7 @@ package com.mycompany.tienda;
 import java.util.ArrayList;
 
 public class Clientes {
+      private static int ultimoNumeroCliente = 0;
     private String nombre;
     private int numCliente;
     private String direccionEnvio;
@@ -11,9 +12,9 @@ public class Clientes {
     private ArrayList<String> pedidosPendientes; // ArrayList de claves de pedidos pendientes
     private ArrayList<String> pedidosAtendidos; // ArrayList de claves de pedidos atendidos
 
-    public Clientes(String nombre, int numCliente, String direccionEnvio, String cuentaPago, double ventaMes) {
+    public Clientes(String nombre,String direccionEnvio, String cuentaPago, double ventaMes) {
         this.nombre = nombre;
-        this.numCliente = numCliente;
+        this.numCliente = ++ultimoNumeroCliente;;
         this.direccionEnvio = direccionEnvio;
         this.cuentaPago = cuentaPago;
         this.ventaMes = ventaMes;
