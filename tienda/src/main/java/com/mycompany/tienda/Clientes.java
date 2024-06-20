@@ -1,97 +1,117 @@
-package com.mycompany.tienda;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package packege.funciones.tienda;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.List;
+import com.mycompany.tienda.Clientes;
 
-public class Clientes {
-      private static int ultimoNumeroCliente = 0;
-    private String nombre;
-    private int numCliente;
-    private String direccionEnvio;
-    private String cuentaPago;
-    private double ventaMes;
-    private ArrayList<String> pedidosPendientes; // ArrayList de claves de pedidos pendientes
-    private ArrayList<String> pedidosAtendidos; // ArrayList de claves de pedidos atendidos
+public class ServiciosCliente {
+    private List<Clientes> listaClientes;
+    private Scanner scanner;
 
-    public Clientes(String nombre,String direccionEnvio, String cuentaPago, double ventaMes) {
-        this.nombre = nombre;
-        this.numCliente = ++ultimoNumeroCliente;;
-        this.direccionEnvio = direccionEnvio;
-        this.cuentaPago = cuentaPago;
-        this.ventaMes = ventaMes;
-        this.pedidosPendientes = new ArrayList<>();
-        this.pedidosAtendidos = new ArrayList<>();
+    public ServiciosCliente() {
+        this.listaClientes = new ArrayList<>();
+        this.scanner = new Scanner(System.in);
     }
 
-    // Getters
-    public String getNombre() {
-        return nombre;
+    // Método para crear un nuevo cliente
+    public void crearCliente(String nombres,String direccion, String cuenta ) {
+        System.out.println("\nCreación de nuevo cliente:");
+        
+        System.out.print("Nombre del cliente: ");
+        String nombre = nombres;
+
+        System.out.print("Dirección de envío: ");
+        String direccionEnvio = direccion;
+
+        System.out.print("Cuenta de pago: ");
+        String cuentaPago = cuenta;
+
+        System.out.print("Venta del mes: ");
+        double ventaMes = 0;
+
+        Clientes nuevoCliente = new Clientes(nombre, direccionEnvio, cuentaPago, ventaMes);
+        listaClientes.add(nuevoCliente);
+
+        //clientesint.actualizarTabla(listaClientes);
+        
+        System.out.println("Cliente creado satisfactoriamente.");
+       
     }
 
-    public int getNumCliente() {
-        return numCliente;
+    // Método para mostrar todos los clientes
+    public void mostrarClientes() {
+        System.out.println("\nListado de clientes:");
+        for (Clientes cliente : listaClientes) {
+            System.out.println(cliente);
+        }
     }
 
-    public String getDireccionEnvio() {
-        return direccionEnvio;
+    // Método para actualizar los datos de un cliente
+    public void actualizarCliente(int num) {
+        System.out.println("\nActualización de cliente:");
+        System.out.print("Ingrese el número de cliente a actualizar: ");
+        int numCliente = num;
+
+        Clientes clienteEncontrado = buscarClientePorNumero(numCliente);
+        if (clienteEncontrado == null) {
+            System.out.println("Cliente no encontrado.");
+            return;
+        }
+
+        System.out.println("Cliente encontrado: " + clienteEncontrado);
+        System.out.println("Ingrese los nuevos datos:");
+
+        System.out.print("Nombre del cliente: ");
+        clienteEncontrado.setNombre(scanner.nextLine());
+
+        System.out.print("Dirección de envío: ");
+        clienteEncontrado.setDireccionEnvio(scanner.nextLine());
+
+        System.out.print("Cuenta de pago: ");
+        clienteEncontrado.setCuentaPago(scanner.nextLine());
+
+        System.out.print("Venta del mes: ");
+        clienteEncontrado.setVentaMes(Double.parseDouble(scanner.nextLine()));
+
+        System.out.println("Cliente actualizado correctamente.");
     }
 
-    public String getCuentaPago() {
-        return cuentaPago;
+    // Método para eliminar un cliente
+    public void eliminarCliente() {
+        System.out.println("\nEliminación de cliente:");
+        System.out.print("Ingrese el número de cliente a eliminar: ");
+        int numCliente = Integer.parseInt(scanner.nextLine());
+
+        Clientes clienteEncontrado = buscarClientePorNumero(numCliente);
+        if (clienteEncontrado == null) {
+            System.out.println("Cliente no encontrado.");
+            return;
+        }
+
+        listaClientes.remove(clienteEncontrado);
+        System.out.println("Cliente eliminado correctamente.");
     }
 
-    public double getVentaMes() {
-        return ventaMes;
+    // Método auxiliar para buscar un cliente por número de cliente
+    private Clientes buscarClientePorNumero(int numCliente) {
+        for (Clientes cliente : listaClientes) {
+            if (cliente.getNumCliente() == numCliente) {
+                return cliente;
+            }
+        }
+        return null;
     }
+    
+    public List<Clientes> getListaClientes() {
+    return this.listaClientes;
+}
 
-    public ArrayList<String> getPedidosPendientes() {
-        return pedidosPendientes;
-    }
-
-    public ArrayList<String> getPedidosAtendidos() {
-        return pedidosAtendidos;
-    }
-
-    // Setters
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setNumCliente(int numCliente) {
-        this.numCliente = numCliente;
-    }
-
-    public void setDireccionEnvio(String direccionEnvio) {
-        this.direccionEnvio = direccionEnvio;
-    }
-
-    public void setCuentaPago(String cuentaPago) {
-        this.cuentaPago = cuentaPago;
-    }
-
-    public void setVentaMes(double ventaMes) {
-        this.ventaMes = ventaMes;
-    }
-
-    public void setPedidosPendientes(ArrayList<String> pedidosPendientes) {
-        this.pedidosPendientes = pedidosPendientes;
-    }
-
-    public void setPedidosAtendidos(ArrayList<String> pedidosAtendidos) {
-        this.pedidosAtendidos = pedidosAtendidos;
-    }
-
-    // Métodos adicionales
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                "nombre='" + nombre + '\'' +
-                ", numCliente=" + numCliente +
-                ", direccionEnvio='" + direccionEnvio + '\'' +
-                ", cuentaPago='" + cuentaPago + '\'' +
-                ", ventaMes=" + ventaMes +
-                ", pedidosPendientes=" + pedidosPendientes +
-                ", pedidosAtendidos=" + pedidosAtendidos +
-                '}';
-    }
+ 
+    
 }
 
