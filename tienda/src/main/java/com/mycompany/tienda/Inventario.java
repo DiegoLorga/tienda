@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.tienda;
 
-/**
- *
- * @author Gizelle RM
- */
 public class Inventario {
     private String claveProducto;
     private double subTotal;
@@ -15,57 +7,55 @@ public class Inventario {
     private int unidadesVendidas;
     private double stock;
 
-    public Inventario(String claveProducto, double subTotal, double total, int unidadesVendidas, double stock) {
-        this.claveProducto = claveProducto;
-        this.subTotal = subTotal;
-        this.total = total;
-        this.unidadesVendidas = unidadesVendidas;
-        this.stock = stock;
+    // Constructor vacío para composición
+    public Inventario() {
+        this.claveProducto = "";
+        this.subTotal = 0;
+        this.total = 0;
+        this.unidadesVendidas = 0;
+        this.stock = 0;
     }
 
-    // Getters
     public String getClaveProducto() {
         return claveProducto;
+    }
+
+    public void setClaveProducto(String claveProducto) {
+        this.claveProducto = claveProducto;
     }
 
     public double getSubTotal() {
         return subTotal;
     }
 
-    public double getTotal() {
-        return total;
-    }
-
-    public int getUnidadesVendidas() {
-        return unidadesVendidas;
-    }
-
-    public double getStock() {
-        return stock;
-    }
-
-    // Setters
-    public void setClaveProducto(String claveProducto) {
-        this.claveProducto = claveProducto;
-    }
-
     public void setSubTotal(double subTotal) {
         this.subTotal = subTotal;
+    }
+
+    public double getTotal() {
+        return total;
     }
 
     public void setTotal(double total) {
         this.total = total;
     }
 
+    public int getUnidadesVendidas() {
+        return unidadesVendidas;
+    }
+
     public void setUnidadesVendidas(int unidadesVendidas) {
         this.unidadesVendidas = unidadesVendidas;
     }
 
-    public void setStock(int stock) {
+    public double getStock() {
+        return stock;
+    }
+
+    public void setStock(double stock) {
         this.stock = stock;
     }
 
-    // Método toString()
     @Override
     public String toString() {
         return "Inventario{" +

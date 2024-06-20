@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.tienda;
 
-/**
- *
- * @author Gizelle RM
- */
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -20,6 +12,7 @@ public class Pedido {
     private double subTotal;
     private ArrayList<String> claveProducto; // ArrayList de claves de productos en el pedido
     private ArrayList<Double> cantidadXProducto; // ArrayList de cantidades por cada producto en el pedido
+    private String status; // Nuevo atributo status con valor por defecto
 
     public Pedido(String clave, Date fechaPedido, double iva, double total, double subTotal) {
         this.clave = clave;
@@ -30,6 +23,7 @@ public class Pedido {
         this.fechaAtencion = null; // Fecha de atención inicialmente nula
         this.claveProducto = new ArrayList<>();
         this.cantidadXProducto = new ArrayList<>();
+        this.status = "pendiente"; // Valor por defecto para status
     }
 
     // Getters
@@ -65,6 +59,10 @@ public class Pedido {
         return cantidadXProducto;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
     // Setters
     public void setClave(String clave) {
         this.clave = clave;
@@ -98,6 +96,10 @@ public class Pedido {
         this.cantidadXProducto = cantidadXProducto;
     }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     // Métodos adicionales
     @Override
     public String toString() {
@@ -110,8 +112,8 @@ public class Pedido {
                 ", subTotal=" + subTotal +
                 ", claveProducto=" + claveProducto +
                 ", cantidadXProducto=" + cantidadXProducto +
+                ", status='" + status + '\'' +
                 '}';
     }
 }
-
 
